@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  frontend:
+    image: node:alpine
+    container_name: frontend
+    command: sh -c "yarn start"
+    volumes:
+      - ./frontend:/var/www
+    working_dir: /var/www
+    ports:
+      - 8080:3000
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+  backend:
+    image: node:alpine
+    container_name: backend
+    command: sh -c "npm start"
+    volumes:
+      - ./backend:/var/www
+    working_dir: /var/www
+    ports:
+      - 8081:8080
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
