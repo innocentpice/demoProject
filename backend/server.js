@@ -1,9 +1,14 @@
-var http = require("http");
+const express = require("express");
 
-http
-	.createServer(function(req, res) {
-		res.writeHead(200, { "Content-Type": "text/html" });
-		res.write("Hello\n");
-		res.end();
-	})
-	.listen(8080);
+const app = express();
+
+const apiRouter = express.Router();
+
+apiRouter.get("/test", (req, res) => {
+	res.json({ msg: "test" });
+});
+
+app.use("/api", apiRouter);
+app.listen(8080, () => {
+	console.log(`Express Runing in port 8080`);
+});
