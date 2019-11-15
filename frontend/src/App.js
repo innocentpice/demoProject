@@ -3,12 +3,20 @@ import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
+	const numbers = ["", 5, 9, "", 23, 33, "", "", 75, "", ""];
+
 	useEffect(() => {
-		fetch("./api/test")
+		fetch("./api/SCG", {
+			method: "POST",
+			body: JSON.stringify(numbers),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
 			.then(res => res.text())
 			.then(console.log);
 		return () => {};
-	}, []);
+	}, [numbers]);
 
 	return (
 		<div className="App">
