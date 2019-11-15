@@ -1,22 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-	const numbers = ["", 5, 9, "", 23, 33, "", "", 75, "", ""];
+	const [keyword, setKeyword] = useState("");
 
-	useEffect(() => {
-		fetch("./api/SCG", {
+	const numbers = ["", 5, 9, 15, 23, "", 45, "", "", ""];
+
+	const findRestaurantsHandler = () => {
+		fetch("./api/SCG/findRestaurants?keyword=" + keyword, {
 			method: "POST",
-			body: JSON.stringify(numbers),
 			headers: {
 				"Content-Type": "application/json"
 			}
 		})
-			.then(res => res.text())
+			.then(res => res.json())
 			.then(console.log);
+	};
+
+	const findXYZHandler = () => {
+		fetch("./api/SCG/findXYZ", {
+			method: "POST",
+			body: JSON.stringify({ numbers }),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+			.then(res => res.json())
+			.then(console.log);
+	};
+
+	useEffect(() => {
+		findXYZHandler();
+		findRestaurantsHandler();
 		return () => {};
-	}, [numbers]);
+	}, []);
 
 	return (
 		<div className="App">
