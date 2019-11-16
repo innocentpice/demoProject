@@ -55,7 +55,7 @@ apiRouter.post(
 			"https://maps.googleapis.com/maps/api/place/nearbysearch/json"
 		);
 		url.searchParams.append("key", "AIzaSyB2gPju4hTookCgpqzSfXQBcf_daQleCVs");
-		url.searchParams.append("input", "");
+		url.searchParams.append("keyword", req.query.keyword || "");
 		url.searchParams.append("location", "13.8234866,100.5081204");
 		url.searchParams.append("type", "restaurant");
 		url.searchParams.append("radius", "1500");
