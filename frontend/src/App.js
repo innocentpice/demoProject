@@ -12,6 +12,15 @@ function App() {
 			<Navbar />
 			<Route exact path="/" component={AssignmentPage} />
 			<Route exact path="/cv" component={CVPage} />
+			<footer className="page-footer font-small blue">
+				<div className="footer-copyright text-center py-3">
+					Create by
+					<a href="https://github.com/innocentpice/demoProject" target="_blank">
+						{" "}
+						Chanachai Sappaso
+					</a>
+				</div>
+			</footer>
 		</>
 	);
 }
@@ -160,10 +169,17 @@ function AssignmentPage() {
 function CVPage() {
 	return (
 		<div className="container">
-			<div className="row">
-				<Document file="myCV.pdf" className="col">
-					<Page pageNumber={1} />
-				</Document>
+			<div className="row" style={{ paddingTop: "1em" }}>
+				<div className="col text-center">
+					<div className="card text-center">
+						<div className="card-header">My CV</div>
+						<div clasclassNames="card-body">
+							<Document file="myCV.pdf">
+								<Page pageNumber={1} />
+							</Document>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
